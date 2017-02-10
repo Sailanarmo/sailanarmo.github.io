@@ -1,15 +1,17 @@
 body, html {
 	height: 100%;
+	font-family: "Overpass Mono";
 }
 
+
 .scrollEffect {
-	background-image: url("grace.gif"), url("blue.jpg");
+	background-image: url("grace.gif"), url("sun.gif"),url("blue.jpg");
 
 	height: 100%;
 
-	background-attachment: fixed, fixed;
-	background-position: center, center;
-	background-repeat: no-repeat, no-repeat;
-	background-size: 20%, cover;
+	background-attachment: fixed, fixed, fixed;
+	background-position: center, top right, center;
+	background-repeat: no-repeat,no-repeat,  no-repeat;
+	background-size: 20%, 20%,  cover;
 
 }
