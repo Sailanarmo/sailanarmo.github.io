@@ -56,6 +56,11 @@ p.second{
 p.invisible{
 	display: none;
 }
+
+/**
+The following below was copied and modified from http://codepen.io/captainbrosset/pen/JoZabN I deserve no original credit for this.
+**/
+
 h1 {
   margin: 0;
   height: 12vmin;
