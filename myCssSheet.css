@@ -6,6 +6,34 @@ body, html {
 	height: 100%;
 }
 
+p:first-of-type{
+	background-color: white;
+}
+
+p:nth-child(4){
+	color: white;
+	font-size:13px;
+}
+
+a:visited{
+	color: #ff24e9;
+}
+
+table{
+	display: table-row;
+	vertical-align: middle;
+	text-align: center;
+}
+
+
+tr:hover{
+	background-color: white;
+}
+
+td:hover{
+	background-color:  #33ffe7;
+}
+
 header {
 	font-family: "Overpass Mono";
 	font-size: 18px;
@@ -21,12 +49,12 @@ p.first{
 
 p.second{
 	font-family: "Overpass Mono";
-	font-size:12px;
 	text-align: left;
 }
 
-
-
+p.invisible{
+	display: none;
+}
 h1 {
   margin: 0;
   height: 12vmin;
