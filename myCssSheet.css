@@ -23,6 +23,7 @@ table{
 	display: table-row;
 	vertical-align: middle;
 	text-align: center;
+	border: 10px solid white;
 }
 
 
