@@ -1,0 +1,3 @@
+[submodule "AtlasImager"]
+	path = AtlasImager
+	url = https://github.com/Sailanarmo/AtlasImager.git

@@ -3,13 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Raul Ramirez</title>
+    <title>Atlas Imager — Raul Ramirez</title>
   </head>
   <body>
     <div id="layout">
       <nav id="sidebar">
         <button id="sidebar-toggle" aria-label="Toggle sidebar">
-          <!-- Chevron left icon — rotates to chevron right when collapsed -->
           <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="15,18 9,12 15,6"></polyline>
           </svg>
@@ -17,7 +16,7 @@
 
         <ul class="nav-links">
           <li>
-            <a href="/" class="nav-link active" aria-label="Home">
+            <a href="/" class="nav-link" aria-label="Home">
               <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                 <polyline points="9,22 9,12 15,12 15,22"></polyline>
@@ -35,7 +34,7 @@
             </a>
           </li>
           <li>
-            <a href="/atlas.html" class="nav-link" aria-label="Atlas Imager">
+            <a href="/atlas.html" class="nav-link active" aria-label="Atlas Imager">
               <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polygon points="12,2 2,7 12,12 22,7"></polygon>
                 <polyline points="2,17 12,22 22,17"></polyline>
@@ -48,24 +47,19 @@
       </nav>
 
       <main id="content">
-        <h1>Welcome</h1>
+        <div class="placeholder-badge">Coming Soon</div>
+        <h1>Atlas Imager</h1>
         <p>
-          Hi, I'm Raul Ramirez — a computer science and mathematics student at Utah State University,
-          working at the Space Dynamics Laboratory.
+          Atlas Imager is a C++ application for processing and visualizing image data.
+          It is being ported to the browser using Emscripten (WebAssembly) and WebGL,
+          which will allow it to run entirely client-side without any server required.
         </p>
         <p>
-          This site is home to my projects and work. Use the sidebar to navigate.
+          The interactive viewer will appear below once the WebAssembly build is integrated.
         </p>
 
-        <h2>What's Here</h2>
-        <p>
-          <a href="/about.html">About Me</a> — my background, the GAS Team projects (ERRNO, GASPACS, Cubium),
-          and how to get in touch.
-        </p>
-        <p>
-          <a href="/atlas.html">Atlas Imager</a> — an interactive viewer for my C++ imaging application,
-          running in the browser via WebAssembly and WebGL.
-        </p>
+        <!-- WebGL output target. The Emscripten module will render into this canvas. -->
+        <canvas id="atlas-canvas" aria-label="Atlas Imager viewport"></canvas>
       </main>
     </div>
 

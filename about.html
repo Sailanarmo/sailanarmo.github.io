@@ -3,13 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Raul Ramirez</title>
+    <title>About Me — Raul Ramirez</title>
   </head>
   <body>
     <div id="layout">
       <nav id="sidebar">
         <button id="sidebar-toggle" aria-label="Toggle sidebar">
-          <!-- Chevron left icon — rotates to chevron right when collapsed -->
           <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="15,18 9,12 15,6"></polyline>
           </svg>
@@ -17,7 +16,7 @@
 
         <ul class="nav-links">
           <li>
-            <a href="/" class="nav-link active" aria-label="Home">
+            <a href="/" class="nav-link" aria-label="Home">
               <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                 <polyline points="9,22 9,12 15,12 15,22"></polyline>
@@ -26,7 +25,7 @@
             </a>
           </li>
           <li>
-            <a href="/about.html" class="nav-link" aria-label="About Me">
+            <a href="/about.html" class="nav-link active" aria-label="About Me">
               <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                 <circle cx="12" cy="7" r="4"></circle>
@@ -48,23 +47,41 @@
       </nav>
 
       <main id="content">
-        <h1>Welcome</h1>
+        <h1>About Me</h1>
         <p>
-          Hi, I'm Raul Ramirez — a computer science and mathematics student at Utah State University,
-          working at the Space Dynamics Laboratory.
-        </p>
-        <p>
-          This site is home to my projects and work. Use the sidebar to navigate.
+          I'm a computer science and mathematics student at Utah State University,
+          working as a software engineer at the Space Dynamics Laboratory.
         </p>
 
-        <h2>What's Here</h2>
+        <h2>The GAS Team</h2>
         <p>
-          <a href="/about.html">About Me</a> — my background, the GAS Team projects (ERRNO, GASPACS, Cubium),
-          and how to get in touch.
+          I've had the opportunity to work on several projects through the Get Away Special (GAS) Team,
+          a student-run organization at USU focused on small spacecraft and high-altitude balloon research.
         </p>
+
+        <h2>ERRNO</h2>
         <p>
-          <a href="/atlas.html">Atlas Imager</a> — an interactive viewer for my C++ imaging application,
-          running in the browser via WebAssembly and WebGL.
+          ERRNO is a high-altitude balloon project that uses an Arduino Mega to collect atmospheric data
+          during flight. The project gave me hands-on experience with embedded systems and sensor integration.
+        </p>
+
+        <h2>GASPACS</h2>
+        <p>
+          GASPACS is a 1U CubeSat project built around a Raspberry Pi Zero. The flight software is
+          open source and the mission focused on deploying a small AeroBoom to demonstrate passive attitude
+          control in low Earth orbit.
+        </p>
+
+        <h2>Cubium</h2>
+        <p>
+          Cubium is a C++ flight software framework originally written by Jack Miranda. I worked with
+          this codebase to learn how small satellite software is structured, separating concerns between
+          hardware abstraction, task scheduling, and inter-module communication.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          Reach me at <a href="mailto:rlramirez12@gmail.com">rlramirez12@gmail.com</a>.
         </p>
       </main>
     </div>
