@@ -47,19 +47,40 @@
       </nav>
 
       <main id="content">
-        <div class="placeholder-badge">Coming Soon</div>
         <h1>Atlas Imager</h1>
-        <p>
-          Atlas Imager is a C++ application for processing and visualizing image data.
-          It is being ported to the browser using Emscripten (WebAssembly) and WebGL,
-          which will allow it to run entirely client-side without any server required.
-        </p>
-        <p>
-          The interactive viewer will appear below once the WebAssembly build is integrated.
-        </p>
 
-        <!-- WebGL output target. The Emscripten module will render into this canvas. -->
-        <canvas id="atlas-canvas" aria-label="Atlas Imager viewport"></canvas>
+        <div id="atlas-controls">
+          <!-- User image upload -->
+          <div class="control-group">
+            <label for="user-image-input">Load X-Ray (.tif / .tiff)</label>
+            <input type="file" id="user-image-input" accept=".tif,.tiff" />
+          </div>
+
+          <!-- Dataset selection -->
+          <div class="control-group">
+            <span class="control-label">Dataset</span>
+            <button id="btn-load-lgn">Load LGN</button>
+            <button id="btn-load-pag">Load PAG</button>
+          </div>
+
+          <!-- Viewer controls (enabled after WASM loads) -->
+          <div class="control-group" id="viewer-controls" style="display:none">
+            <button id="btn-prev">&#8592; Prev</button>
+            <button id="btn-next">Next &#8594;</button>
+            <button id="btn-reset">Reset</button>
+            <label>
+              Opacity
+              <input type="range" id="slider-opacity" min="0" max="100" value="75" />
+            </label>
+          </div>
+
+          <p id="atlas-status" aria-live="polite">Loading WebAssembly module…</p>
+        </div>
+
+        <!-- WebGL output target. The Emscripten module renders into this canvas. -->
+        <canvas id="atlas-canvas" aria-label="Atlas Imager viewport"
+                style="width:100%;max-width:900px;height:600px;display:block;background:#111;border-radius:4px;margin-top:1rem;">
+        </canvas>
       </main>
     </div>
 
