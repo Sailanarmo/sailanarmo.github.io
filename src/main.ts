@@ -2,6 +2,7 @@ import './style.css'
 import { fromArrayBuffer } from 'geotiff'
 
 const STORAGE_KEY = 'sidebar-collapsed'
+const CONTROLS_KEY = 'controls-collapsed'
 
 const sidebar = document.getElementById('sidebar')
 const toggleBtn = document.getElementById('sidebar-toggle')
@@ -17,6 +18,23 @@ if (sidebar && toggleBtn) {
     localStorage.setItem(
       STORAGE_KEY,
       String(sidebar.classList.contains('collapsed'))
+    )
+  })
+}
+
+const controlsPanel = document.getElementById('controls-panel')
+const controlsToggle = document.getElementById('controls-toggle')
+
+if (controlsPanel && controlsToggle) {
+  if (localStorage.getItem(CONTROLS_KEY) === 'true') {
+    controlsPanel.classList.add('collapsed')
+  }
+
+  controlsToggle.addEventListener('click', () => {
+    controlsPanel.classList.toggle('collapsed')
+    localStorage.setItem(
+      CONTROLS_KEY,
+      String(controlsPanel.classList.contains('collapsed'))
     )
   })
 }
@@ -159,11 +177,15 @@ async function initAtlas(canvas: HTMLCanvasElement) {
     Module.setOpacity(pct / 100)
   })
 
-  // Keep the canvas in sync when the window is resized
-  window.addEventListener('resize', () => {
-    canvas.width = canvas.offsetWidth
-    canvas.height = canvas.offsetHeight
-    Module.resizeRenderer(canvas.width, canvas.height)
-  })
+  // Keep the canvas in sync whenever the renderer area changes size
+  // (covers both window resize and controls panel collapse/expand).
+  const renderer = canvas.parentElement
+  if (renderer) {
+    new ResizeObserver(() => {
+      canvas.width = canvas.offsetWidth
+      canvas.height = canvas.offsetHeight
+      Module.resizeRenderer(canvas.width, canvas.height)
+    }).observe(renderer)
+  }
 }
 

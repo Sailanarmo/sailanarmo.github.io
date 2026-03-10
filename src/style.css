@@ -9,6 +9,7 @@
 :root {
   --sidebar-expanded: 240px;
   --sidebar-collapsed: 60px;
+  --controls-expanded: 260px;
   --bg: #0f1117;
   --sidebar-bg: #161b22;
   --border: #30363d;
@@ -181,16 +182,162 @@ p {
   margin-bottom: 14px;
 }
 
-/* ===== Atlas canvas (placeholder) ===== */
+/* ===== Atlas renderer (centre column) ===== */
+#renderer {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+}
+
 #atlas-canvas {
+  position: absolute;
+  inset: 5px 0;
+  width: 100%;
+  height: calc(100% - 10px);
+  background: #000;
+  display: block;
+}
+
+/* ===== Right controls panel ===== */
+#controls-panel {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: var(--controls-expanded);
+  background: var(--sidebar-bg);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  transition: width var(--transition);
+  overflow: hidden;
+  flex-shrink: 0;
+  z-index: 100;
+}
+
+#controls-panel.collapsed {
+  width: var(--sidebar-collapsed);
+}
+
+#controls-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 56px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  color: var(--text-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+  transition: color var(--transition), background var(--transition);
+}
+
+#controls-toggle:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+#controls-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.controls-toggle-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  transition: transform var(--transition);
+}
+
+/* When collapsed the chevron flips to point left (expand hint) */
+#controls-panel.collapsed .controls-toggle-icon {
+  transform: rotate(180deg);
+}
+
+.controls-content {
+  padding: 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: opacity var(--transition);
+}
+
+#controls-panel.collapsed .controls-content {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ===== Control groups (inside right panel) ===== */
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.control-label,
+.control-group > label:first-child {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.control-group input[type="file"] {
+  font-size: 0.8rem;
+  color: var(--text);
+  max-width: 100%;
+}
+
+.control-group button {
   display: block;
   width: 100%;
-  max-width: 900px;
-  aspect-ratio: 16 / 9;
-  background: #000;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  margin-top: 24px;
+  padding: 8px 12px;
+  background: rgba(88, 166, 255, 0.08);
+  border: 1px solid rgba(88, 166, 255, 0.25);
+  border-radius: 6px;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition);
+  white-space: nowrap;
+}
+
+.control-group button:hover {
+  background: rgba(88, 166, 255, 0.18);
+  border-color: rgba(88, 166, 255, 0.5);
+}
+
+.range-label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.range-label input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+#atlas-status {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+  line-height: 1.5;
+  margin: 0;
 }
 
 .placeholder-badge {

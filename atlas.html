@@ -46,13 +46,26 @@
         </ul>
       </nav>
 
-      <main id="content">
-        <h1>Atlas Imager</h1>
+      <!-- Renderer — canvas fills the entire centre column -->
+      <main id="renderer">
+        <canvas id="atlas-canvas" aria-label="Atlas Imager viewport"></canvas>
+      </main>
 
-        <div id="atlas-controls">
+      <!-- Right controls sidebar -->
+      <aside id="controls-panel">
+        <button id="controls-toggle" aria-label="Toggle controls panel">
+          <!-- chevron-right: default icon when panel is expanded -->
+          <svg class="controls-toggle-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9,18 15,12 9,6"></polyline>
+          </svg>
+        </button>
+
+        <div class="controls-content">
+          <p id="atlas-status" aria-live="polite">Loading WebAssembly module…</p>
+
           <!-- User image upload -->
           <div class="control-group">
-            <label for="user-image-input">Load X-Ray (.tif / .tiff)</label>
+            <label for="user-image-input">X-Ray Image</label>
             <input type="file" id="user-image-input" accept=".tif,.tiff" />
           </div>
 
@@ -63,25 +76,19 @@
             <button id="btn-load-pag">Load PAG</button>
           </div>
 
-          <!-- Viewer controls (enabled after WASM loads) -->
+          <!-- Viewer controls (revealed after WASM loads) -->
           <div class="control-group" id="viewer-controls" style="display:none">
+            <span class="control-label">Navigation</span>
             <button id="btn-prev">&#8592; Prev</button>
             <button id="btn-next">Next &#8594;</button>
             <button id="btn-reset">Reset</button>
-            <label>
+            <label class="range-label">
               Opacity
               <input type="range" id="slider-opacity" min="0" max="100" value="75" />
             </label>
           </div>
-
-          <p id="atlas-status" aria-live="polite">Loading WebAssembly module…</p>
         </div>
-
-        <!-- WebGL output target. The Emscripten module renders into this canvas. -->
-        <canvas id="atlas-canvas" aria-label="Atlas Imager viewport"
-                style="width:100%;max-width:900px;height:600px;display:block;background:#111;border-radius:4px;margin-top:1rem;">
-        </canvas>
-      </main>
+      </aside>
     </div>
 
     <script type="module" src="/src/main.ts"></script>
