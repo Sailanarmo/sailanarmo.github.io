@@ -3,13 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Raul Ramirez</title>
+    <title>Atlas Imager — Raul Ramirez</title>
   </head>
   <body>
     <div id="layout">
       <nav id="sidebar">
         <button id="sidebar-toggle" aria-label="Toggle sidebar">
-          <!-- Chevron left icon — rotates to chevron right when collapsed -->
           <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="15,18 9,12 15,6"></polyline>
           </svg>
@@ -17,7 +16,7 @@
 
         <ul class="nav-links">
           <li>
-            <a href="/" class="nav-link active" aria-label="Home">
+            <a href="/" class="nav-link" aria-label="Home">
               <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                 <polyline points="9,22 9,12 15,12 15,22"></polyline>
@@ -35,7 +34,7 @@
             </a>
           </li>
           <li>
-            <a href="/atlas.html" class="nav-link" aria-label="Atlas Imager">
+            <a href="/atlas.html" class="nav-link active" aria-label="Atlas Imager">
               <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polygon points="12,2 2,7 12,12 22,7"></polygon>
                 <polyline points="2,17 12,22 22,17"></polyline>
@@ -47,25 +46,49 @@
         </ul>
       </nav>
 
-      <main id="content">
-        <h1>Welcome</h1>
-        <p>
-          Hi, my name is Raul Ramirez. I am a software engineer who specializes in C++. I love building tools and applications for problems that 
-          I encounter in my work and hobbies. I have a particular interest in graphics, imaging, and game development.
-        </p>
-        <p>
-          This site is home to my projects and work. 
-        </p>
-
-        <h2>What's Here</h2>
-        <p>
-          <a href="/about.html">About Me</a> — my background, interests, hobbies, and how to get in touch.
-        </p>
-        <p>
-          <a href="/atlas.html">Atlas Imager</a> — an interactive viewer for my C++ imaging application,
-          running in the browser via WebAssembly and WebGL.
-        </p>
+      <!-- Renderer — canvas fills the entire centre column -->
+      <main id="renderer">
+        <canvas id="atlas-canvas" aria-label="Atlas Imager viewport"></canvas>
       </main>
+
+      <!-- Right controls sidebar -->
+      <aside id="controls-panel">
+        <button id="controls-toggle" aria-label="Toggle controls panel">
+          <!-- chevron-right: default icon when panel is expanded -->
+          <svg class="controls-toggle-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9,18 15,12 9,6"></polyline>
+          </svg>
+        </button>
+
+        <div class="controls-content">
+          <p id="atlas-status" aria-live="polite">Loading WebAssembly module…</p>
+
+          <!-- User image upload -->
+          <div class="control-group">
+            <label for="user-image-input">X-Ray Image</label>
+            <input type="file" id="user-image-input" accept=".tif,.tiff" />
+          </div>
+
+          <!-- Dataset selection -->
+          <div class="control-group">
+            <span class="control-label">Dataset</span>
+            <button id="btn-load-lgn">Load LGN</button>
+            <button id="btn-load-pag">Load PAG</button>
+          </div>
+
+          <!-- Viewer controls (revealed after WASM loads) -->
+          <div class="control-group" id="viewer-controls" style="display:none">
+            <span class="control-label">Navigation</span>
+            <button id="btn-prev">&#8592; Prev</button>
+            <button id="btn-next">Next &#8594;</button>
+            <button id="btn-reset">Reset</button>
+            <label class="range-label">
+              Opacity
+              <input type="range" id="slider-opacity" min="0" max="100" value="75" />
+            </label>
+          </div>
+        </div>
+      </aside>
     </div>
 
     <script type="module" src="/src/main.ts"></script>
